@@ -1,7 +1,7 @@
 import joblib
 from pathlib import Path
 import os
-import dill
+import dill # 0.3.6
 import re
 
 # folder structure in docker may be different
@@ -15,8 +15,5 @@ classes = ['Arabic', 'Danish', 'Dutch', 'English', 'French', 'German',
 
 
 def predict_pipeline(text):
-    
     pred = model.predict([text])
     return classes[pred[0]]
-
-print(dill.__version__)
