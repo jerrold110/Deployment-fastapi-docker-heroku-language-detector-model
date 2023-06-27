@@ -18,7 +18,8 @@ class PredictionOut(BaseModel):
 def home():
     return {"health_check": "OK", 'model_version': model_version}
 
+# data input is a string, WITHOUT being inside an array
 @app.post("/predict", response_model=PredictionOut)
 def predict(payload: TextIn):
-    language = predict_pipeline([payload.text])
+    language = predict_pipeline(payload.text)
     return {"language": language}

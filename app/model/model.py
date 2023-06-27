@@ -18,5 +18,10 @@ classes = ['Arabic', 'Danish', 'Dutch', 'English', 'French', 'German',
 
 # data input and output is a single dimension array
 def predict_pipeline(text):
+    text = re.sub(r'[!@#$(),\n"%^*?\:;~`0-9]', ' ', text)
+    text = re.sub(r'\[[ ]\]', '', text)
+    text = text.lower()
     pred = model.predict([text])
     return classes[pred[0]]
+
+#print(predict_pipeline('hello'))
