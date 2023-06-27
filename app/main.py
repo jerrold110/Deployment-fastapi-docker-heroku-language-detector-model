@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+# working directory in uvicorn docker image is in the root directory, outside of /app
 from app.model.model import predict_pipeline
 from app.model.model import __version__ as model_version
 
@@ -19,5 +20,5 @@ def home():
 
 @app.post("/predict", response_model=PredictionOut)
 def predict(payload: TextIn):
-    language = predict_pipeline(payload.text)
+    language = predict_pipeline([payload.text])
     return {"language": language}
